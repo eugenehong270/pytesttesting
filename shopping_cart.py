@@ -19,5 +19,5 @@ class ShoppingCart:
     def get_total_price(self, price_map):
         total_price = 0
         for item in self.items:
-            total_price += price_map[item]
+            total_price += price_map.get(item)
         return total_price

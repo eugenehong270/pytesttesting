@@ -1,4 +1,7 @@
 from shopping_cart import ShoppingCart
+from item_database import ItemDataBase
+from unittest.mock import Mock
+
 import pytest
 
 @pytest.fixture
@@ -25,9 +28,6 @@ def test_can_get_total_price(cart):
     cart.add("apple")
     cart.add("orange")
 
-    price_map = {
-        "apple": 1.0,
-        "orange": 5.0
-    }
-
-    assert cart.get_total_price(price_map) == 6
+    item_database = ItemDataBase()
+    item_database.get = Mock(return_value=1.0)
+    assert cart.get_total_price(item_database) == 2
